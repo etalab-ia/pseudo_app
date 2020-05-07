@@ -10,13 +10,13 @@ from components.data_ETL import load_text, create_upload_tab_html_output
 
 # Env variables
 PSEUDO_REST_API_URL = os.environ.get('PSEUDO_REST_API_URL', '')
-MODEL_PATH = os.environ.get('PSEUDO_MODEL_PATH', '')
+PSEUDO_MODEL_PATH = os.environ.get('PSEUDO_MODEL_PATH', '')
 TAGGER = None
-if not PSEUDO_REST_API_URL and not MODEL_PATH:
+if not PSEUDO_REST_API_URL and not PSEUDO_MODEL_PATH:
     print("Neither the pseudonymization service nor a trained model are available. We cannot continue :(")
     exit(1)
-elif not PSEUDO_REST_API_URL and MODEL_PATH:
-    TAGGER = SequenceTagger.load(MODEL_PATH)
+elif not PSEUDO_REST_API_URL and PSEUDO_MODEL_PATH:
+    TAGGER = SequenceTagger.load(PSEUDO_MODEL_PATH)
 with open("./assets/text_files/upload_example.txt", "r") as example:
     TEXTE_EXEMPLE = example.read()
 
