@@ -15,8 +15,9 @@ TAGGER = None
 if not PSEUDO_REST_API_URL and not PSEUDO_MODEL_PATH:
     print("Neither the pseudonymization service nor a trained model are available. We cannot continue :(")
     exit(1)
-elif not PSEUDO_REST_API_URL and PSEUDO_MODEL_PATH:
+elif (not PSEUDO_REST_API_URL and PSEUDO_MODEL_PATH) or (PSEUDO_MODEL_PATH and PSEUDO_REST_API_URL):
     TAGGER = SequenceTagger.load(PSEUDO_MODEL_PATH)
+
 with open("./assets/text_files/upload_example.txt", "r") as example:
     TEXTE_EXEMPLE = example.read()
 

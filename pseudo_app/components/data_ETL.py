@@ -77,10 +77,10 @@ def create_flair_corpus(conll_tagged: str):
 
 
 def request_pseudo_api(text: str, pseudo_api_url: str):
-    payload = {"text": text}
+    payload = {"text": text, "output_type": "conll"}
     r = requests.post(pseudo_api_url, payload).json()
     if r["success"]:
-        return r["conll_tagged_text"]
+        return r["conll"]
 
 
 def create_upload_tab_html_output(text, tagger, word_tokenizer=None, pseudo_api_url=None):
