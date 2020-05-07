@@ -16,7 +16,7 @@ services:
     build: ./pseudo_app
     ports:
       - "8050:8050"
-    command: gunicorn -w 3 --timeout 90 -b 0.0.0.0:8050 wsgi:server
+    command: gunicorn -w 3 --timeout 90 -b 0.0.0.0:8050 app:server
     depends_on:
       - pseudo_api
 
