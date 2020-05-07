@@ -132,5 +132,4 @@ dependencies:
     - xlrd==1.2.0
     - xlsxwriter==1.2.8
     - zipp==3.1.0
-prefix: /home/pavel/miniconda3/envs/dash_pseudo_app
 

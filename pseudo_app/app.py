@@ -2,7 +2,6 @@ import os
 from typing import Dict
 
 import dash
-import flask
 
 from components.page_layout import app_page_layout
 from components.tab_about import tab_about_content
