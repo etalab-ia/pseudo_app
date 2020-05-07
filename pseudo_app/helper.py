@@ -56,25 +56,18 @@ def app_page_layout(page_layout, app_title="Etalab Pseudo", light_logo=False):
     )
 
 
-def run_standalone_app(layout, callbacks):
+def run_standalone_app(name, layout, callbacks, server):
     """Run demo app (tests/dashbio_demos/*/app.py) as standalone app."""
-    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    app = dash.Dash(name, server=server, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
     app.title = "Etalab Pseudo"
-    app.scripts.config.serve_locally = True
+    # app.scripts.config.serve_locally = True
     # Handle callback to component with id "fullband-switch"
     app.config['suppress_callback_exceptions'] = True
 
     # Get all information from filename
 
-    app_name = "Pseudonymisation Demo"
-
-    app_title = "{}".format(app_name.replace('-', ' ').title())
-
-    header_colors = {
-        'bg_color': 'white',
-        'font_color': 'black'
-    }
+    app_title = "Pseudonymisation Demo"
 
     # Assign layout
     app.layout = app_page_layout(

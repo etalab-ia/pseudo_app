@@ -1,12 +1,11 @@
 import os
-import sys
 from typing import Dict
+
+import flask
 
 from components.tab_about import tab_about_content
 from components.tab_errors import tab_errors_content, pane_errors_content, pane_errors_content_dynamic
 from components.tab_upload import tab_upload_content, pane_upload_content
-
-sys.path.append("../")
 
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
@@ -15,6 +14,8 @@ import dash_core_components as dcc
 from helper import run_standalone_app
 
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+server = flask.Flask(__name__)  # define flask app.server
+
 
 def layout():
     """
@@ -74,5 +75,5 @@ def callbacks(_app):
 
 
 if __name__ == '__main__':
-    app = run_standalone_app(layout, callbacks)
+    app = run_standalone_app(__name__, layout, callbacks, True)
     app.run_server(debug=False, port=8050)
