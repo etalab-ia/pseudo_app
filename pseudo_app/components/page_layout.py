@@ -1,7 +1,5 @@
 import base64
 
-import dash
-import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
@@ -54,29 +52,3 @@ def app_page_layout(page_layout, app_title="Etalab Pseudo", light_logo=False):
             )
         ],
     )
-
-
-def run_standalone_app(name, layout, callbacks, server):
-    """Run demo app (tests/dashbio_demos/*/app.py) as standalone app."""
-    app = dash.Dash(name, server=server, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-    app.title = "Etalab Pseudo"
-    # app.scripts.config.serve_locally = True
-    # Handle callback to component with id "fullband-switch"
-    app.config['suppress_callback_exceptions'] = True
-
-    # Get all information from filename
-
-    app_title = "Pseudonymisation Demo"
-
-    # Assign layout
-    app.layout = app_page_layout(
-        page_layout=layout(),
-        app_title=app_title,
-    )
-
-    # Register all callbacks
-    callbacks(app)
-
-    # return app object
-    return app

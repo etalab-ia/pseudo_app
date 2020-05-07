@@ -1,8 +1,10 @@
 import os
 from typing import Dict
 
+import dash
 import flask
 
+from components.page_layout import app_page_layout
 from components.tab_about import tab_about_content
 from components.tab_errors import tab_errors_content, pane_errors_content, pane_errors_content_dynamic
 from components.tab_upload import tab_upload_content, pane_upload_content
@@ -11,10 +13,8 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_core_components as dcc
-from helper import run_standalone_app
 
 DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-server = flask.Flask(__name__)  # define flask app.server
 
 
 def layout():
@@ -74,6 +74,18 @@ def callbacks(_app):
             return children, data
 
 
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
+app.title = "Etalab Pseudo"
+app_title = "Pseudonymisation Demo"
+
+# Assign layout
+app.layout = app_page_layout(
+    page_layout=layout(),
+    app_title=app_title,
+)
+# Register all callbacks
+callbacks(app)
+
 if __name__ == '__main__':
-    app = run_standalone_app(__name__, layout, callbacks, True)
     app.run_server(debug=False, port=8050)
