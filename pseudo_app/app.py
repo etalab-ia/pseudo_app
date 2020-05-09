@@ -73,7 +73,7 @@ def callbacks(_app):
             return children, data
 
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], url_base_pathname="/pseudo/")
 server = app.server
 app.title = "Etalab Pseudo"
 app_title = "Pseudonymisation Demo"

@@ -101,7 +101,7 @@ def pane_upload_content(contents, file_name, n_clicks, data):
 
     children = dbc.Tabs(
         [
-            dbc.Tab(tagged_content, label="Document annotée"),
+            dbc.Tab(tagged_content, label="Document annoté"),
             dbc.Tab(pseudo_content, label="Document pseudonymisé"),
         ]
     )
