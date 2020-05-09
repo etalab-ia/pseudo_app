@@ -111,7 +111,7 @@ def create_upload_tab_html_output(text, tagger, word_tokenizer=None, pseudo_api_
     return html_pseudoynmized, html_tagged
 
 
-def file2txt(doc_path: str):
+def file2txt(doc_path: str) -> str:
     if doc_path.endswith("doc"):
         result = subprocess.run(['antiword', '-w', '0', doc_path], stdout=subprocess.PIPE)
         result = result.stdout.decode("utf-8").replace("|", "\t")
@@ -120,8 +120,8 @@ def file2txt(doc_path: str):
     return result
 
 
-def load_text(doc_path):
-    return file2txt(doc_path)
+def load_text(doc_path: Path) -> str:
+    return file2txt(doc_path.as_posix())
 
 
 ENTITIES = {"PER_PRENOM": "PRENOM", "PER_NOM": "NOM", "LOC": "ADRESSE"}

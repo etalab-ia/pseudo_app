@@ -41,7 +41,7 @@ Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé
     il faut considérer l'effort pour les obtenir et l'effet de _rendement décroissant_ après un certain seuil des
     documents annotés (autour de 800 dans cet exemple).
         
-    N.B.: ces résultats sont spécifiques à nos données et conditions particulières.
+    N.B.: ces résultats sont spécifiques à nos données et à aux conditions particulières du projet.
     Cet exemple a été _cherry-picked_ afin de faciliter la démonstration.
           """)]
 
