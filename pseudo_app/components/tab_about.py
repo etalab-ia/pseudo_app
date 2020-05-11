@@ -57,7 +57,7 @@ tab_about_content = dbc.Tab(
         html.P(POURQUOI),
         html.H4(className='what-is', children='Comment ça marche ?'),
         html.P(COMMENT),
-        html.H4(className='what-is', children='Utiliser ce demo'),
+        html.H4(className='what-is', children='Utiliser cette démo'),
         html.P(UTILISER),
     ])
 )

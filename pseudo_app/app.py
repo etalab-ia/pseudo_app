@@ -57,10 +57,11 @@ def callbacks(_app):
                     Output('session-store', 'data')],
                    [Input('upload-data', 'contents'),
                     Input('upload-data', 'filename'),
+                    Input('upload-div', 'n_clicks'),
                     Input("main-tabs", "active_tab"),
-                    Input("exemple-text", "n_clicks")],
+                    Input("example-text", "n_clicks")],
                    [State('session-store', 'data')])
-    def pseudo_pane_update(contents, file_name: str, tab_is_at, n_clicks, data: Dict):
+    def pseudo_pane_update(contents, file_name: str, n_clicks_upload, tab_is_at, n_clicks_example, data: Dict):
         data = data or {"previous_tab": tab_is_at}
         if tab_is_at == "tab-about":
             data["previous_tab"] = tab_is_at
@@ -74,7 +75,7 @@ def callbacks(_app):
                     children = data["previous_content"]
                     data["previous_tab"] = tab_is_at
                     return children, data
-            children, data = pane_upload_content(contents, file_name, n_clicks, data)
+            children, data = pane_upload_content(contents, file_name, n_clicks_example, data)
             data["previous_tab"] = tab_is_at
             return children, data
 
