@@ -32,7 +32,13 @@ def layout():
                          tab_errors_content
                      ], active_tab="tab-about"),
                  )),
-        dbc.Container(id='right-pane', className="six columns", fluid=True)
+        dbc.Container(id='right-panew', className="six columns", fluid=True,
+                      children=dcc.Loading(id="right-pane",
+                                           type="default",
+                                           fullscreen=False,
+                                           className="six columns",
+                                           )
+                      )
     ])
     return div
 
@@ -75,9 +81,9 @@ def callbacks(_app):
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], url_base_pathname="/pseudo/")
 server = app.server
-app.title = "Etalab Pseudo"
-app_title = "Pseudonymisation Demo"
-
+app.title = "Pseudo"
+app_title = "Démo Pseudo"
+app.config['suppress_callback_exceptions'] = True
 # Assign layout
 app.layout = app_page_layout(
     page_layout=layout(),

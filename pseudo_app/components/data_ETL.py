@@ -1,6 +1,7 @@
 import copy
 import glob
 import itertools
+import re
 import subprocess
 from pathlib import Path
 from string import ascii_uppercase
@@ -14,6 +15,8 @@ from flair.data import Token
 from flair.datasets import ColumnDataset
 from sacremoses import MosesTokenizer, MosesDetokenizer, MosesPunctNormalizer
 import requests
+
+detokenizer_fr = MosesDetokenizer(lang="fr")
 
 
 def prepare_upload_tab_html(sentences_tagged, original_text_lines):
@@ -69,8 +72,14 @@ def create_flair_corpus(conll_tagged: str):
             temp_file.write(conll_tagged)
 
         flair_corpus = ColumnDataset(path_to_column_file=temp_conll_file,
-                                     column_name_map={0: 'text', 1: 'ner'})
-        add_span_positions_to_dataset(flair_corpus)
+                                     column_name_map={0: 'text', 1: 'ner',
+                                                      2: 'start_pos', 3: 'end_pos'})
+        for sentence in flair_corpus.sentences:
+            for (token, start_pos_span, end_pos_span) in zip(sentence.tokens, sentence.get_spans("start_pos"),
+                                                             sentence.get_spans("end_pos")):
+                token.start_pos = int(start_pos_span.tag)
+                token.end_pos = int(end_pos_span.tag)
+
         return flair_corpus
     finally:
         temp_conll_file.unlink()
@@ -84,10 +93,9 @@ def request_pseudo_api(text: str, pseudo_api_url: str):
 
 
 def create_upload_tab_html_output(text, tagger, word_tokenizer=None, pseudo_api_url=None):
-    slpitted_text = [t.strip() for t in text.split("\n") if t.strip()]
+    splitted_text = [t.strip() for t in text.split("\n") if t.strip()]
     if pseudo_api_url:
         conll_tagged = request_pseudo_api(text=text, pseudo_api_url=pseudo_api_url)
-        # text = [t.strip() for t in text.split("\n") if t.strip()]
         if not conll_tagged:
             return None
         sentences_tagged = create_flair_corpus(conll_tagged)
@@ -97,16 +105,14 @@ def create_upload_tab_html_output(text, tagger, word_tokenizer=None, pseudo_api_
         else:
             tokenizer = word_tokenizer
 
-        # text = [t.strip() for t in text.split("\n") if t.strip()]
-
-        sentences_tagged = tagger.predict(sentences=slpitted_text,
+        sentences_tagged = tagger.predict(sentences=splitted_text,
                                           mini_batch_size=32,
                                           embedding_storage_mode="none",
                                           use_tokenizer=tokenizer,
                                           verbose=True)
 
     html_pseudoynmized, html_tagged = prepare_upload_tab_html(sentences_tagged=sentences_tagged,
-                                                              original_text_lines=slpitted_text)
+                                                              original_text_lines=splitted_text)
 
     return html_pseudoynmized, html_tagged
 
@@ -170,7 +176,7 @@ def build_moses_tokenizer(tokenizer: MosesTokenizerSpans,
                           normalizer: MosesPunctNormalizer = None) -> Callable[[str], List[Token]]:
     """
     Wrap Spacy model to build a tokenizer for the Sentence class.
-    :param model a Spacy V2 model
+    :param model a Moses tokenizer instance
     :return a tokenizer function to provide to Sentence class constructor
     """
     try:
@@ -210,11 +216,26 @@ def build_moses_tokenizer(tokenizer: MosesTokenizerSpans,
     return tokenizer
 
 
-MOSES_TOKENIZER = build_moses_tokenizer(tokenizer=MosesTokenizerSpans(lang="fr"))
+tokenizer_fr = MosesTokenizerSpans(lang="fr")
+MOSES_TOKENIZER = build_moses_tokenizer(tokenizer=tokenizer_fr)
 
 
 def sent_tokenizer(text):
     return text.split("\n")
+
+
+def retokenize_conll(dataset: ColumnDataset):
+    for s in dataset.sentences:
+        sent_tokens = [t.text for t in s.tokens]
+        sent_text = detokenizer_fr.detokenize(sent_tokens)
+        span_tokens = tokenizer_fr.span_tokenize(sent_text)
+        if not len(sent_tokens) == len(span_tokens):
+            return
+        for i, t in enumerate(s.tokens):
+            t.start_pos = span_tokens[i][1][0]
+            t.end_pos = span_tokens[i][1][1]
+
+    return dataset
 
 
 def add_span_positions_to_dataset(dataset: ColumnDataset):
@@ -225,8 +246,13 @@ def add_span_positions_to_dataset(dataset: ColumnDataset):
                 token.start_pos = 0
             else:
                 prev_token = sentence.tokens[i_tok - 1]
-                token.start_pos = prev_token.end_pos + 1
-            token.end_pos = token.start_pos + len(token.text) - (1 if i_tok >= len(sentence.tokens) - 1 else 0)
+                # if comma, dot do increment counter (there is no space between them and prev token)
+                if (len(token.text) == 1 and re.match(r'[.,]', token.text)) or re.match(r"\w?[('°]$", token.text):
+                    token.start_pos = prev_token.end_pos
+                else:
+                    token.start_pos = prev_token.end_pos + 1
+
+            token.end_pos = token.start_pos + len(token.text)
 
 
 def prepare_error_decisions(decisions_path: Path):

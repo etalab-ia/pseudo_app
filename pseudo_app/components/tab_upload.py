@@ -75,8 +75,7 @@ def pane_upload_content(contents, file_name, n_clicks, data):
             f.write(decoded)
 
         decoded = load_text(temp_path)
-
-        # We remove the file from our system
+        # We remove the file from the system
         temp_path.unlink()
     else:
         data.update({"n_clicks": n_clicks or 0})
