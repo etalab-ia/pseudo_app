@@ -92,6 +92,14 @@ def request_pseudo_api(text: str, pseudo_api_url: str):
         return r["conll"]
 
 
+def request_stats_api(pseudo_api_url: str):
+    if not pseudo_api_url:
+        return
+    r = requests.get(pseudo_api_url).json()
+    if r["success"]:
+        return r["stats_info"]
+
+
 def create_upload_tab_html_output(text, tagger, word_tokenizer=None, pseudo_api_url=None):
     splitted_text = [t.strip() for t in text.split("\n") if t.strip()]
     if pseudo_api_url:

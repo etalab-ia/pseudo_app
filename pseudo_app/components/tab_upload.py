@@ -31,16 +31,15 @@ tab_upload_content = dbc.Tab(
                  className='app-controls-block'),
         html.Div(
             id='seq-view-fast-upload',
-            children=html.Div(id="upload-div0",
-                              children=dcc.Upload(id='upload-data',
-                                                  className='control-upload',
-                                                  max_size="100000",  # 200 kb
-                                                  children=html.Div(id="upload-div",
-                                                                    children=[
+            children=dcc.Upload(id='upload-data',
+                                className='control-upload',
+                                max_size="100000",  # 200 kb
+                                children=html.Div(id="upload-div",
+                                                  children=[
                                                       "Faire glisser ou cliquer pour charger un fichier"
                                                   ]),
-                                                  )
-                              ),
+                                )
+
         ),
         html.Div(["Ou ", html.B("lancez le texte exemple en cliquant ici", id="example-text")],
                  className='app-controls-block'),

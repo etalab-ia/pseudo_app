@@ -63,7 +63,7 @@ tab_errors_content = dbc.Tab(
     label='Volume des données annotées',
     tab_id="tab-errors",
     children=html.Div(className='page', children=[
-        html.H4(className='what-is', children=""),
+        html.H4(className='what-is', children="Performance vs. volume de données"),
         html.P(VOLUME),
     ])
 )
