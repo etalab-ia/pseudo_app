@@ -17,7 +17,7 @@ qui s’impose aux administrations.
 Afin de faciliter l'ouverture au grand public, une solution automatisée de pseudonymisation, comme celle-ci, est donc
 souhaitable pour faire face à la grande quantité des documents à traiter dans un temps raisonnable. 
 
-Cette démo, [l'API](http://somelink.ici), et la [guide pseudonymisation](http://www.guides.etalab.gouv.fr)
+Cette démo, [l'API](https://github.com/psorianom/pseudo_api), et la [guide pseudonymisation](https://guides.etalab.gouv.fr/pseudonymisation/)
 (où ous pouvez trouver beaucoup plus d'informations) font partie des outils 
  mutuaisables du [Lab IA](https://www.etalab.gouv.fr/datasciences-et-intelligence-artificielle)
 [d'Etalab](https://www.etalab.gouv.fr).
@@ -50,7 +50,7 @@ Vous pouvez trouver beaucoup plus d'informations sur [notre guide pseudo](http:/
 tab_about_content = dbc.Tab(
     label='À propos',
     tab_id="tab-about",
-    children=html.Div(className='page', children=[
+        children=html.Div(className='page', children=[
         html.H4(className='what-is', children='La pseudonymisation en quelque mots'),
         html.P(QUOI),
         html.H4(className='what-is', children='Pourquoi un outil de pseudonymisation ?'),

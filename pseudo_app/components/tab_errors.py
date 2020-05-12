@@ -17,14 +17,13 @@ ORDERED_FILENAMES = ["80_10_10.results.txt",
                      "2400_300_300.results.txt"]
 
 VOLUME = [dcc.Markdown(f"""
-La performance d'un modèle de REN dépend de diverses facteurs tels que la qualité et la quantité des données
-d'entraînement : le nombre de documents ainsi que le nombre d'entités annotées. 
-Estimer combien des données à annoter est un premier pas lors du lancement d'une campagne d'annotation.
-Dans ce sens, nous affichons ici un aperçu sur l'impact du volume des données
+La performance d'un modèle de REN dépend du nombre de documents et d'entités annotées. 
+Estimer la quantité des données à annoter est un premier pas lors du lancement d'une campagne d'annotation.
+Nous affichons ici un aperçu sur l'impact du volume des données
 d'entrainement par rapport à la pertinence d'un système REN.
 
 À droite, nous observons les annotations faites par huit modèles différents sur la même décision de justice.
-Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé.
+Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé (de 80 à 2400 documents).
 
 
 """),
@@ -37,11 +36,11 @@ Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé
     dcc.Markdown("""
     
     Si bien la quantité des données d'entraînement nécessaires est très liée à la nature de nos documents et à la qualité de
-    l'annotation, en général, c'est mieux d'avoir le plus des données annotées possibles. Cela dit,
-    il faut considérer l'effort pour les obtenir et l'effet de _rendement décroissant_ après un certain seuil des
+    l'annotation, en général, c'est mieux d'avoir autant de données annotées que possible. Cela dit,
+    il faut considérer l'effort pour les obtenir et l'effet du _rendement décroissant_ après un certain seuil des
     documents annotés (autour de 800 dans cet exemple).
         
-    N.B.: ces résultats sont spécifiques à nos données et à aux conditions particulières du projet.
+    N.B.: ces résultats sont spécifiques à nos données et aux conditions particulières du projet.
     Cet exemple a été _cherry-picked_ afin de faciliter la démonstration.
           """)]
 

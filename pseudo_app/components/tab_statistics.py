@@ -21,7 +21,14 @@ TITLES_KEYS = {
 tab_statistics_content = dbc.Tab(
     label='API Stats',
     tab_id="tab-statistics",
-    children=dbc.Container(className='page', children="hola")
+    children=html.Div(className='page', children=dbc.Container(
+        [
+            html.H4("Utilisation de l'API"),
+            html.P("Derrière cette dèmo il tourne une API qui fait le travail."),
+            html.P("À droite, nous affichons les statistiques d'utilisation. Ces valeurs sont"
+                   "    obtenues une seule fois par visite à ce site.")
+        ]
+    ))
 )
 
 

@@ -85,7 +85,7 @@ def create_flair_corpus(conll_tagged: str):
         temp_conll_file.unlink()
 
 
-def request_pseudo_api(text: str, pseudo_api_url: str):
+def     request_pseudo_api(text: str, pseudo_api_url: str):
     payload = {"text": text, "output_type": "conll"}
     r = requests.post(pseudo_api_url, payload).json()
     if r["success"]:
