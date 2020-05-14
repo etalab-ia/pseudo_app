@@ -18,12 +18,12 @@ ORDERED_FILENAMES = ["80_10_10.results.txt",
 
 VOLUME = [dcc.Markdown(f"""
 La performance d'un modèle de REN dépend du nombre de documents et d'entités annotées. 
-Estimer la quantité des données à annoter est un premier pas lors du lancement d'une campagne d'annotation.
-Nous affichons ici un aperçu sur l'impact du volume des données
-d'entrainement par rapport à la pertinence d'un système REN.
+Estimer la quantité de données à annoter est une première étape indispensable lors du lancement d'une campagne d'annotation.
+Nous affichons ici un aperçu de l'impact du volume des données
+d'entraînement par rapport à la pertinence d'un système REN.
 
-À droite, nous observons les annotations faites par huit modèles différents sur la même décision de justice.
-Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé (de 80 à 2400 documents).
+À droite, nous observons les résultats obtenus par huit modèles différents sur la même décision de justice.
+La différence entre ces modèles est la taille du corpus utilisé pour les entraîner (de 80 à 2400 documents).
 
 
 """),
@@ -35,13 +35,13 @@ Ces modèles varient par rapport à la taille du corpus d'entraînement utilisé
     html.Br(),
     dcc.Markdown("""
     
-    Si bien la quantité des données d'entraînement nécessaires est très liée à la nature de nos documents et à la qualité de
-    l'annotation, en général, c'est mieux d'avoir autant de données annotées que possible. Cela dit,
-    il faut considérer l'effort pour les obtenir et l'effet du _rendement décroissant_ après un certain seuil des
+    Si la quantité de données d'entraînement nécessaire est très liée à la nature de nos documents et à la qualité de
+    l'annotation, en général, il est préférable de disposer d'autant de données annotées que possible. Cela dit,
+    il faut considérer l'effort pour les obtenir et l'effet du _rendement décroissant_ après un certain seuil de
     documents annotés (autour de 800 dans cet exemple).
         
     N.B.: ces résultats sont spécifiques à nos données et aux conditions particulières du projet.
-    Cet exemple a été _cherry-picked_ afin de faciliter la démonstration.
+    Cet exemple a été choisi (_cherry-picked_) afin de faciliter la démonstration.
           """)]
 
 pane_errors_content = [
@@ -59,7 +59,7 @@ pane_errors_content = [
 
 ]
 tab_errors_content = dbc.Tab(
-    label='Volume des données annotées',
+    label='Volume de données annotées',
     tab_id="tab-errors",
     children=html.Div(className='page', children=[
         html.H4(className='what-is', children="Performance vs. volume de données"),

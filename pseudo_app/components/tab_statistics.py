@@ -24,9 +24,9 @@ tab_statistics_content = dbc.Tab(
     children=html.Div(className='page', children=dbc.Container(
         [
             html.H4("Utilisation de l'API"),
-            html.P("Derrière cette dèmo il tourne une API qui fait le travail."),
+            html.P("Derrière cette démo, une API réalise la pseudonymisation des exemples que vous lui soumettez.
             html.P("À droite, nous affichons les statistiques d'utilisation. Ces valeurs sont"
-                   "    obtenues une seule fois par visite à ce site.")
+                   "    uniques: elles se mettront à jour systématiquement après chaque visite et utilisation sur ce site.")
         ]
     ))
 )
