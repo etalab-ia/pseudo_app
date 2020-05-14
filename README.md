@@ -1,6 +1,6 @@
 
 # Pseudo App
-This project is a part of the document's pseudonymization effort lead at [Etalab's](http://www.codeforsanfrancisco.org) [Lab IA](https://github.com/etalab-ia/).  Other Lab IA projects can be found at the [Lab IA](https://github.com/etalab-ia).
+This project is a part of the document's pseudonymization effort lead at [Etalab's](https://www.etalab.gouv.fr/) [Lab IA](https://github.com/etalab-ia/).  Other Lab IA projects can be found at the [Lab IA](https://github.com/etalab-ia).
 
 #### Project Status: [Active]
 
