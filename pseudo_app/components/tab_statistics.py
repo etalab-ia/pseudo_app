@@ -87,6 +87,6 @@ def pane_statistics_content(data):
             dbc.Col(dbc.Card(list_cards[9], color="dark", outline=True)),
         ]
     )
-    children = html.Div([row_1, row_2, row_3, row_4], style={"margin-top": "1cm"})
+    children = html.Div([row_1, row_2, row_3], style={"margin-top": "1cm"})
     data["stats_content"] = children
     return children, data
