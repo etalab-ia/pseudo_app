@@ -34,7 +34,9 @@ This demo depends by default on the [pseudo API](https://github.com/psorianom/ps
 You do need to train a NER model with the [Flair library](https://github.com/flairNLP/flair). Unfortunately, we cannot share nor the model nor the data it was trained on as it contains non-public information.
 
 ## Getting Started
-The easiest way to test this application is by creating a Docker container.
+
+The easiest way to run this application is by using Docker and Docker Compose.
+
 1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
 2. Add the path of the local model to the `.env` file. Note that you could also pass this env var to the app directly and you would not need run the API.
 3. Launch the wrapper bash file `run_docker.sh`. This file will clean and rebuild the required Docker containers by calling `docker-compose.yml`.

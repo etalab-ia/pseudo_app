@@ -29,14 +29,14 @@ La différence entre ces modèles est la taille du corpus utilisé pour les entr
 """),
 
     html.P(["""Ces annotations se distinguent par trois types de résultats :"""]),
-    html.P(["1. ", html.Mark("Entité bien repérée",  **{"data-correcttab": "PRENOM"}), ": une entité à occulter bien identifiée."]),
+    html.P(["1. ", html.Mark("Entité bien repérée",  **{"data-correcttab": "PRENOM"}), ": une entité à occulter bien identifiée ;"]),
     html.P(["2. ", html.Mark("Entité non-repérée", **{"data-errortab": "NON REPÉRÉ"}), ": une entité à occulter non identifiée par le modèle ;"]),
     html.P(["3. ", html.Mark("Entité sur-repérée", **{"data-errortab": "PRENOM"}), ": un mot identifié tandis qu'il ne faut pas l'occulter."]),
     html.Br(),
     dcc.Markdown("""
     
-    Si la quantité de données d'entraînement nécessaire est très liée à la nature de nos documents et à la qualité de
-    l'annotation, en général, il est préférable de disposer d'autant de données annotées que possible. Cela dit,
+    La quantité de données d'entraînement nécessaire est très liée à la nature de nos documents et à la qualité de
+    l'annotation. En général, il est préférable de disposer d'autant de données annotées que possible. Cela dit,
     il faut considérer l'effort pour les obtenir et l'effet du _rendement décroissant_ après un certain seuil de
     documents annotés (autour de 800 dans cet exemple).
         
