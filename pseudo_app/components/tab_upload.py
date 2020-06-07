@@ -29,7 +29,7 @@ tab_upload_content = dbc.Tab(
     children=html.Div(className='control-tab', children=[
         html.Div([html.P("Veuillez choisir un fichier à analyser (type .doc, .docx, .txt. Max 100 Ko)"),
                   html.P([html.B("Attention: "),
-                          "cette application n'est qu'une démo. Veillez à ne pas transmettre d’informations sensibles."])],
+                          "cette application n'est qu'une démo,  aucune donnée n'est conservée. Veillez à ne pas transmettre d’informations sensibles."])],
                  className='app-controls-block'),
         html.Div(
             id='seq-view-fast-upload',
