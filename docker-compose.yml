@@ -1,31 +1,28 @@
 version: '3'
-
 services:
-
   pseudo_api:
     container_name: pseudo_api
     restart: always
     build: https://github.com/etalab-ia/pseudo_api.git#:pseudo_api
     ports:
-      - "8000"
+      - "8011:8000"
     volumes:
      - ${PSEUDO_MODEL_PATH}:/usr/src/pseudo_api/model/best-model.pt
      - ${PSEUDO_API_DB_PATH}:/usr/src/pseudo_api/api_stats.sqlite
     command: gunicorn -w 2 --timeout 90 -b 0.0.0.0:8000 wsgi:server
-
-
+    
   pseudo_app:
     container_name: pseudo_app
     restart: always
     build: ./pseudo_app
     ports:
-      - "8050"
+      - "8010:8050"
     environment:
       - PSEUDO_REST_API_URL=${PSEUDO_REST_API_URL}
     command: gunicorn -w 1 --timeout 90 -b 0.0.0.0:8050 app:server
     depends_on:
       - pseudo_api
-
+  
   nginx:
     container_name: nginx
     restart: always
