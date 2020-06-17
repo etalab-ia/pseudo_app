@@ -27,7 +27,7 @@ tab_upload_content = dbc.Tab(
     label='Pseudonymisez un document',
     tab_id="tab-upload",
     children=html.Div(className='control-tab', children=[
-        html.Div([html.P("Veuillez choisir un fichier à analyser (type .doc, .docx, .txt. Max 100 Ko)"),
+        html.Div([html.P("Veuillez choisir un fichier à analyser (type .odt, .doc, .docx, .txt. Max 100 Ko)"),
                   html.P([html.B("Attention: "),
                           "cette application n'est qu'une démo,  aucune donnée n'est conservée. Veillez à ne pas transmettre d’informations sensibles."])],
                  className='app-controls-block'),
